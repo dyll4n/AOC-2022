@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Day01Test {
@@ -32,6 +33,17 @@ public class Day01Test {
     public void part1() throws IOException {
         String input = Files.readString(Path.of("inputs/day01part1.txt"));
         Assertions.assertEquals(67450, day01.getHighestCalories(input));
+    }
+
+    @Test
+    public void getSumOfTopThreeElvesCalories(){
+        Assertions.assertEquals(45000,day01.getSumOfTopThreeElvesCalories(input));
+    }
+
+    @Test
+    public void part2() throws IOException {
+        String input = Files.readString(Path.of("inputs/day01part1.txt"));
+        Assertions.assertEquals(199357, day01.getSumOfTopThreeElvesCalories(input));
     }
 
 

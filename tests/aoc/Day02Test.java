@@ -11,14 +11,14 @@ import static aoc.Day02.Move.*;
 
 class Day02Test {
 
-    @Test
-    public void canGetListOfStrategiesFromSampleInput() {
-        String input = """
+    public String input = """
                 A Y
                 B X
                 C Z
                 """;
 
+    @Test
+    public void canGetListOfStrategiesFromSampleInput() {
         List<Strategy> expected = Arrays.asList(
             new Strategy(ROCK, PAPER),
             new Strategy(PAPER, ROCK),
@@ -29,4 +29,17 @@ class Day02Test {
 
         Assertions.assertIterableEquals(expected, actual);
     }
+
+    @Test
+    public void getRoundScoresFromSampleInput() {
+        List<Integer> expected = Arrays.asList(
+                8,
+                1,
+                6
+        );
+
+        List<Strategy> actual = Day02.getListOfStrategies(input);
+        Assertions.assertIterableEquals(expected, actual);
+    }
+
 }

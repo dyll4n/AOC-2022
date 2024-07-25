@@ -38,8 +38,17 @@ class Day02Test {
                 6
         );
 
-        List<Strategy> actual = Day02.getListOfStrategies(input);
+        List<Strategy> strategies = getListOfStrategies(input);
+        List<Integer> actual = getScoresForStrategies(strategies);
         Assertions.assertIterableEquals(expected, actual);
     }
+
+    @Test
+    public void canGetTotalScoreForStrategies() {
+        Assertions.assertEquals(15, Day02.getTotalScore(input));
+    }
+
+    //may as well do final test which runs on the puzzle input
+    //then do first test for part 2
 
 }

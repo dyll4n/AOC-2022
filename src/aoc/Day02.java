@@ -69,6 +69,9 @@ public class Day02 {
     }
 
     public static int getTotalScore(String input) {
-        return 0;
+        return getScoresForStrategies(getListOfStrategies(input))
+                .stream()
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 }

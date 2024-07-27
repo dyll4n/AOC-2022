@@ -3,6 +3,9 @@ package aoc;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 
@@ -44,8 +47,14 @@ class Day02Test {
     }
 
     @Test
-    public void canGetTotalScoreForStrategies() {
+    public void canGetTotalScoreForStrategiesFromSampleInput() {
         Assertions.assertEquals(15, Day02.getTotalScore(input));
+    }
+
+    @Test
+    public void totalScoreFromFileInput() throws IOException {
+        String input = Files.readString(Path.of("inputs/day02part1.txt"));
+        Assertions.assertEquals(12458, Day02.getTotalScore(input));
     }
 
     //may as well do final test which runs on the puzzle input

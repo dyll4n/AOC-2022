@@ -6,6 +6,10 @@ import java.util.stream.Collectors;
 
 public class Day02 {
 
+    public enum State {
+        WIN, LOSE, DRAW
+    }
+
     public enum Move {
         ROCK, PAPER, SCISSORS;
 
@@ -73,5 +77,9 @@ public class Day02 {
                 .stream()
                 .mapToInt(Integer::intValue)
                 .sum();
+    }
+
+    public static List<State> getListOfStates(String input) {
+        return null;
     }
 }

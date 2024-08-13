@@ -60,4 +60,15 @@ class Day02Test {
     //may as well do final test which runs on the puzzle input
     //then do first test for part 2
 
+    @Test
+    public void listOfRoundStates(){
+        List<State> expected = Arrays.asList(
+                State.DRAW,
+                State.LOSE,
+                State.WIN
+        );
+
+        List<State> actual = Day02.getListOfStates(input);
+        Assertions.assertIterableEquals(expected, actual);
+    }
 }

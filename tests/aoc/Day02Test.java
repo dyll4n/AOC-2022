@@ -73,4 +73,18 @@ class Day02Test {
         List<StrategyPart2> actual = Day02.getListOfStrategiesForPart2(sampleInput);
         Assertions.assertIterableEquals(expected, actual);
     }
+
+    @Test
+    public void getExpectedMove(){
+        List<StrategyPart2> sampleMoves = Arrays.asList(
+                new StrategyPart2(ROCK, Outcome.DRAW),
+                new StrategyPart2(PAPER, Outcome.LOSE),
+                new StrategyPart2(SCISSORS, Outcome.WIN)
+        );
+
+        for(StrategyPart2 strategy : sampleMoves){
+            Assertions.assertEquals(ROCK, Day02.getMovePart2(strategy));
+        }
+
+    }
 }

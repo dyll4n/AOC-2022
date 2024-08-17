@@ -6,8 +6,19 @@ import java.util.stream.Collectors;
 
 public class Day02 {
 
+
+
     public enum Outcome {
-        WIN, LOSE, DRAW
+        WIN, LOSE, DRAW;
+
+        public static Outcome fromChar(char input) {
+            return switch (input) {
+                case 'X' -> Outcome.LOSE;
+                case 'Y' -> Outcome.DRAW;
+                case 'Z' -> Outcome.WIN;
+                default -> throw new RuntimeException("Unexpected character for outcome: " + input);
+            };
+        }
     }
 
     public enum Move {
@@ -82,6 +93,23 @@ public class Day02 {
     }
 
     public static List<StrategyPart2> getListOfStrategiesForPart2(String input) {
+        List<StrategyPart2> strategiesPart2 = new ArrayList<>();
+        String[] moves = input.split("\\n");
+
+        for (String move : moves) {
+            String strategy = move.trim().replaceAll(" ", "");
+            strategiesPart2.add(
+                    new StrategyPart2(
+                            Move.fromChar(strategy.charAt(0)),
+                            Outcome.fromChar(strategy.charAt(1))
+                    )
+            );
+        }
+        return strategiesPart2;
+    }
+
+    // return Move here
+    public static Move getMovePart2(StrategyPart2 strategy) {
         return null;
     }
 }

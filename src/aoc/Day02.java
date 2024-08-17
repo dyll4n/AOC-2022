@@ -110,6 +110,26 @@ public class Day02 {
 
     // return Move here
     public static Move getMovePart2(StrategyPart2 strategy) {
-        return null;
+        Move opponentsMove = strategy.opponentsMove;
+        Outcome outcome = strategy.outcome;
+        return switch (outcome) {
+            case DRAW -> opponentsMove;
+            case WIN -> Move.values()[Math.floorMod(opponentsMove.ordinal() + 1,  3)];
+            case LOSE -> Move.values()[Math.floorMod(opponentsMove.ordinal() - 1,  3)];
+        };
+
+        //This is a fancy pants solution
+        //ROCK, PAPER, SCISSORS is the name of the game. The order of moves tells you what beats what.
+        //[rock, paper, scissors]
+        //paper is beaten by rock. In the array above paper is at index 1 and rock is at 0. Just subtract one to determine the losing move
+        //just add one to determine the winning move
+        //the Math.floorMod makes sure we 'wrap around' the end of the array
+        //for example: the opponent chooses scissors, and we want to beat them.
+        //scissors is at index 2. We add 1 to get 3. 3 is out of bounds of the array.
+        //doing Math.floorMod(3, 3) will result in 0. 0 is rock, which absolutely annihilates scissors.
+    }
+
+    public static int getTotalScorePart2(String input) {
+        return 0;
     }
 }

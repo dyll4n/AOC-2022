@@ -32,7 +32,7 @@ public class Day02 {
 
     }
 
-    public record Strategy(Move opponentsMove, Move yourMove) { //https://www.baeldung.com/java-record-keyword
+    public record StrategyPart1(Move opponentsMove, Move yourMove) { //https://www.baeldung.com/java-record-keyword
         public int score() {
             return scoreForOutcome() + yourMove.scoreForMove();
         }
@@ -49,14 +49,14 @@ public class Day02 {
     }
 
 
-    public static List<Strategy> getListOfStrategies(String input) {
-        List<Strategy> strategies = new ArrayList<>();
+    public static List<StrategyPart1> getListOfStrategies(String input) {
+        List<StrategyPart1> strategies = new ArrayList<>();
         String[] moves = input.split("\\n");
 
         for (String move : moves) {
             String strategy = move.trim().replaceAll(" ", "");
             strategies.add(
-                    new Strategy(
+                    new StrategyPart1(
                             Move.fromChar(strategy.charAt(0)),
                             Move.fromChar(strategy.charAt(1))
                     )
@@ -66,9 +66,9 @@ public class Day02 {
         return strategies;
     }
 
-    public static List<Integer> getScoresForStrategies(List<Strategy> strategies) {
+    public static List<Integer> getScoresForStrategies(List<StrategyPart1> strategies) {
         return strategies.stream()
-                .map(Strategy::score)
+                .map(StrategyPart1::score)
                 .collect(Collectors.toList());
     }
 

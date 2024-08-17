@@ -14,7 +14,7 @@ import static aoc.Day02.Move.*;
 
 class Day02Test {
 
-    public String input = """
+    public String sampleInput = """
                 A Y
                 B X
                 C Z
@@ -22,13 +22,13 @@ class Day02Test {
 
     @Test
     public void canGetListOfStrategiesFromSampleInput() {
-        List<Strategy> expected = Arrays.asList(
-            new Strategy(ROCK, PAPER),
-            new Strategy(PAPER, ROCK),
-            new Strategy(SCISSORS, SCISSORS)
+        List<StrategyPart1> expected = Arrays.asList(
+            new StrategyPart1(ROCK, PAPER),
+            new StrategyPart1(PAPER, ROCK),
+            new StrategyPart1(SCISSORS, SCISSORS)
         );
 
-        List<Strategy> actual = Day02.getListOfStrategies(input);
+        List<StrategyPart1> actual = Day02.getListOfStrategies(sampleInput);
 
         Assertions.assertIterableEquals(expected, actual);
     }
@@ -41,14 +41,14 @@ class Day02Test {
                 6
         );
 
-        List<Strategy> strategies = getListOfStrategies(input);
+        List<StrategyPart1> strategies = getListOfStrategies(sampleInput);
         List<Integer> actual = getScoresForStrategies(strategies);
         Assertions.assertIterableEquals(expected, actual);
     }
 
     @Test
     public void canGetTotalScoreForStrategiesFromSampleInput() {
-        Assertions.assertEquals(15, Day02.getTotalScore(input));
+        Assertions.assertEquals(15, Day02.getTotalScore(sampleInput));
     }
 
     @Test
@@ -68,7 +68,7 @@ class Day02Test {
                 State.WIN
         );
 
-        List<State> actual = Day02.getListOfStates(input);
+        List<State> actual = Day02.getListOfStates(sampleInput);
         Assertions.assertIterableEquals(expected, actual);
     }
 }

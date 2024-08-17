@@ -57,18 +57,20 @@ class Day02Test {
         Assertions.assertEquals(12458, Day02.getTotalScore(input));
     }
 
-    //may as well do final test which runs on the puzzle input
-    //then do first test for part 2
 
+
+    //I have changed the test to expect a list of StrategyPart2s instead of Outcomes
+    //Getting just a list of outcomes creates the problem of matching up opponent moves to the correct outcomes
+    //It is easier to keep them together in a new class: StrategyPart2
     @Test
-    public void listOfRoundStates(){
-        List<State> expected = Arrays.asList(
-                State.DRAW,
-                State.LOSE,
-                State.WIN
+    public void canGetListOfStrategiesForPart2(){
+        List<StrategyPart2> expected = Arrays.asList(
+                new StrategyPart2(ROCK, Outcome.DRAW),
+                new StrategyPart2(PAPER, Outcome.LOSE),
+                new StrategyPart2(SCISSORS, Outcome.WIN)
         );
 
-        List<State> actual = Day02.getListOfStates(sampleInput);
+        List<StrategyPart2> actual = Day02.getListOfStrategiesForPart2(sampleInput);
         Assertions.assertIterableEquals(expected, actual);
     }
 }

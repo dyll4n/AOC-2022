@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class Day02 {
 
-    public enum State {
+    public enum Outcome {
         WIN, LOSE, DRAW
     }
 
@@ -48,6 +48,8 @@ public class Day02 {
         }
     }
 
+    public record StrategyPart2(Move opponentsMove, Outcome outcome) {}
+
 
     public static List<StrategyPart1> getListOfStrategies(String input) {
         List<StrategyPart1> strategies = new ArrayList<>();
@@ -79,7 +81,7 @@ public class Day02 {
                 .sum();
     }
 
-    public static List<State> getListOfStates(String input) {
+    public static List<StrategyPart2> getListOfStrategiesForPart2(String input) {
         return null;
     }
 }

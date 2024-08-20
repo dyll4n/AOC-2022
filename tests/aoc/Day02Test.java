@@ -131,4 +131,11 @@ class Day02Test {
         //don't be afraid to copy and past at first then refactor to DRY
     }
 
+
+    @Test
+    public void canGetTotalScoreForPart2FromFileInput() throws IOException {
+        String input = Files.readString(Path.of("inputs/day02part1.txt"));
+        Assertions.assertEquals(12683, Day02.getTotalScorePart2(input));
+    }
+
 }

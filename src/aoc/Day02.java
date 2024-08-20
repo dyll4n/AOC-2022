@@ -137,9 +137,8 @@ public class Day02 {
         //doing Math.floorMod(3, 3) will result in 0. 0 is rock, which absolutely annihilates scissors.
     }
 
-
+    // Couldn't Refactor! My IDE couldn't simplify to one line
     public static List<Integer> getScoresForStrategiesPart2(List<StrategyPart2> strategies) {
-
         List<Integer> values = new ArrayList<>();
 
         for(StrategyPart2 strategy : strategies){

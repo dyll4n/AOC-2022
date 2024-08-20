@@ -19,6 +19,14 @@ public class Day02 {
                 default -> throw new RuntimeException("Unexpected character for outcome: " + input);
             };
         }
+
+        public int scoreForOutcome() {
+            return switch (this) {
+                case LOSE -> 0;
+                case DRAW-> 3;
+                case WIN -> 6;
+            };
+        }
     }
 
     public enum Move {
@@ -129,7 +137,22 @@ public class Day02 {
         //doing Math.floorMod(3, 3) will result in 0. 0 is rock, which absolutely annihilates scissors.
     }
 
+
+    public static List<Integer> getScoresForStrategiesPart2(List<StrategyPart2> strategies) {
+
+        List<Integer> values = new ArrayList<>();
+
+        for(StrategyPart2 strategy : strategies){
+            values.add(getMovePart2(strategy).scoreForMove() + strategy.outcome.scoreForOutcome());
+        }
+
+        return values;
+    }
+
     public static int getTotalScorePart2(String input) {
-        return 0;
+        return getScoresForStrategiesPart2(getListOfStrategiesForPart2(input))
+                .stream()
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 }

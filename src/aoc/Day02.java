@@ -20,7 +20,7 @@ public class Day02 {
             };
         }
 
-        public int scoreForOutcome() {
+        public int score() {
             return switch (this) {
                 case LOSE -> 0;
                 case DRAW-> 3;
@@ -41,7 +41,7 @@ public class Day02 {
             };
         }
 
-        public int scoreForMove() {
+        public int score() {
             return switch (this) {
                 case ROCK -> 1;
                 case PAPER -> 2;
@@ -53,7 +53,7 @@ public class Day02 {
 
     public record StrategyPart1(Move opponentsMove, Move yourMove) { //https://www.baeldung.com/java-record-keyword
         public int score() {
-            return scoreForOutcome() + yourMove.scoreForMove();
+            return scoreForOutcome() + yourMove.score();
         }
 
         private int scoreForOutcome() {
@@ -138,14 +138,18 @@ public class Day02 {
     }
 
     // Couldn't Refactor! My IDE couldn't simplify to one line
+    // Don't rely on your IDE!
     public static List<Integer> getScoresForStrategiesPart2(List<StrategyPart2> strategies) {
-        List<Integer> values = new ArrayList<>();
-
-        for(StrategyPart2 strategy : strategies){
-            values.add(getMovePart2(strategy).scoreForMove() + strategy.outcome.scoreForOutcome());
-        }
-
-        return values;
+//        List<Integer> values = new ArrayList<>();
+//
+//        for(StrategyPart2 strategy : strategies){
+//            values.add(getMovePart2(strategy).scoreForMove() + strategy.outcome.scoreForOutcome());
+//        }
+//
+//        return values;
+        return strategies.stream()
+                .map(strategy -> getMovePart2(strategy).score() + strategy.outcome.score())
+                .collect(Collectors.toList());
     }
 
     public static int getTotalScorePart2(String input) {

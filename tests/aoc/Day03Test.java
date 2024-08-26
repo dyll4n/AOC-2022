@@ -18,8 +18,9 @@ public class Day03Test {
             CrZsJsPPZsGzwwsLwLmpwMDw
             """;
 
+    //renamed 'RucksackCompartments' to just Rucksack because we aren't directly asserting on compartments here
     @Test
-    public void canGetRucksackCompartments() {
+    public void canGetRucksacks() {
         List<Day03.Rucksack> expected = Arrays.asList(
                 new Day03.Rucksack("vJrwpWtwJgWr","hcsFMMfFFhFp"),
                 new Day03.Rucksack("jqHRNqRjqzjGDLGL","rsFMfFZSrLrFZsSL"),
@@ -30,9 +31,22 @@ public class Day03Test {
 
         );
 
-        List<Day03.Rucksack> actual = Day03.getRucksackCompartments(sampleInput);
+        List<Day03.Rucksack> actual = Day03.getRucksacks(sampleInput);
 
         Assertions.assertIterableEquals(expected, actual);
+    }
 
+    @Test
+    public void canGetPriorityForItem() {
+        Assertions.assertEquals(1, Day03.priorityFor('a'));
+        Assertions.assertEquals(16, Day03.priorityFor('p'));
+        Assertions.assertEquals(19, Day03.priorityFor('s'));
+        Assertions.assertEquals(20, Day03.priorityFor('t'));
+        Assertions.assertEquals(22, Day03.priorityFor('v'));
+        Assertions.assertEquals(26, Day03.priorityFor('z'));
+        Assertions.assertEquals(27, Day03.priorityFor('A'));
+        Assertions.assertEquals(38, Day03.priorityFor('L'));
+        Assertions.assertEquals(42, Day03.priorityFor('P'));
+        Assertions.assertEquals(52, Day03.priorityFor('Z'));
     }
 }

@@ -48,5 +48,6 @@ public class Day03Test {
         Assertions.assertEquals(38, Day03.priorityFor('L'));
         Assertions.assertEquals(42, Day03.priorityFor('P'));
         Assertions.assertEquals(52, Day03.priorityFor('Z'));
+        //hint: you can do something with ascii codes
     }
 }

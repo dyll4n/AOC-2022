@@ -50,4 +50,14 @@ public class Day03Test {
         Assertions.assertEquals(52, Day03.priorityFor('Z'));
         //hint: you can do something with ascii codes
     }
+
+    @Test
+    public void canGetPriorityFromCommonItem(){
+        List<Day03.Rucksack> rucksacks = Day03.getRucksacks(sampleInput);
+        List<Integer> expected = Arrays.asList(16,38,42,22,20,19);
+        List<Integer> actual = Day03.getPrioritiesFromCommonItems(rucksacks);
+
+        Assertions.assertIterableEquals(expected,actual);
+
+    }
 }

@@ -7,6 +7,8 @@ import java.util.stream.Stream;
 
 public class Day03 {
 
+
+
     public record Rucksack(String firstCompartment, String secondCompartment) { }
 
     public static List<Rucksack> getRucksacks(String input) {
@@ -24,6 +26,18 @@ public class Day03 {
     }
 
     public static int priorityFor(char c) {
-        return 0;
+        int priorityValue;
+        int asciiValue = c;
+
+        if(asciiValue  < 97){
+            priorityValue = asciiValue  - 38;
+        } else {
+            priorityValue = asciiValue  - 96;
+        }
+        return priorityValue;
+    }
+
+    public static List<Integer> getPrioritiesFromCommonItems(List<Rucksack> rucksacks) {
+        return null;
     }
 }

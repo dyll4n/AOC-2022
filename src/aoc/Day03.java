@@ -1,12 +1,10 @@
 package aoc;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Day03 {
-
 
 
     public record Rucksack(String firstCompartment, String secondCompartment) { }
@@ -27,17 +25,37 @@ public class Day03 {
 
     public static int priorityFor(char c) {
         int priorityValue;
-        int asciiValue = c;
-
-        if(asciiValue  < 97){
-            priorityValue = asciiValue  - 38;
+        if(c < 97){ //Java lets you implicitly treat chars as ints. I'm conflicted about whether this is a good thing or not.
+            priorityValue = c - 38;
         } else {
-            priorityValue = asciiValue  - 96;
+            priorityValue = c - 96;
         }
         return priorityValue;
     }
 
-    public static List<Integer> getPrioritiesFromCommonItems(List<Rucksack> rucksacks) {
-        return null;
+    public static int sumOfDuplicateItemPriorities(List<Rucksack> rucksacks) {
+        return rucksacks.stream().map(r -> {
+            Set<Character> intersection = getStringIntersection(r.firstCompartment, r.secondCompartment);
+            if (intersection.size() != 1) throw new RuntimeException("Expected 1 element in " + intersection);
+            return intersection.stream().findFirst().get();
+        }).mapToInt(Day03::priorityFor).sum();
+    }
+
+    /**
+     * Convenience method because turning a String into a list of Characters is annoying in Java
+     * and so are set operations
+     * @param a The first string
+     * @param b The second string
+     * @return A set containing only the characters in both a and b
+     */
+    private static Set<Character> getStringIntersection(String a, String b) {
+        Set<Character> aSet = a.chars().mapToObj(c -> (char) c).collect(Collectors.toSet());
+        Set<Character> bSet = b.chars().mapToObj(c -> (char) c).collect(Collectors.toSet());
+        aSet.retainAll(bSet); //set intersection
+        return aSet;
+    }
+
+    public static List<List<Rucksack>> getGroupedRucksacks(String input) {
+        return Collections.emptyList();
     }
 }

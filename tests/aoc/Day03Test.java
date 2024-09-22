@@ -65,7 +65,7 @@ public class Day03Test {
     @Test
     public void canGetSumOfDuplicateItemPrioritiesForPuzzleInput() throws IOException {
         String input = Files.readString(Path.of("inputs/day03.txt")); //put your input here!
-        Assertions.assertEquals(-1, Day03.sumOfDuplicateItemPriorities(Day03.getRucksacks(input)));
+        Assertions.assertEquals(8109, Day03.sumOfDuplicateItemPriorities(Day03.getRucksacks(input)));
     }
 
 

@@ -88,4 +88,13 @@ public class Day03Test {
         );
         Assertions.assertIterableEquals(expected, groupedRucksacks);
     }
+
+    @Test
+    public void canFindBadgeType(){
+        List<List<Day03.Rucksack>> groupedRucksacks = Day03.getGroupedRucksacks(sampleInput);
+        List<String> badges = Day03.findBadgeType(groupedRucksacks);
+        List<String> expected = List.of("r","Z");
+
+        Assertions.assertIterableEquals(expected, badges);
+    }
 }

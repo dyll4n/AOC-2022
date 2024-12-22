@@ -7,6 +7,8 @@ import java.util.stream.Stream;
 public class Day03 {
 
 
+
+
     public record Rucksack(String firstCompartment, String secondCompartment) { }
 
     public static List<Rucksack> getRucksacks(String input) {
@@ -56,6 +58,20 @@ public class Day03 {
     }
 
     public static List<List<Rucksack>> getGroupedRucksacks(String input) {
+        List<Rucksack> rucksacks = getRucksacks(input);
+        List<List<Rucksack>> groupedRucksacks = new ArrayList<>();
+        List<Rucksack> temp;
+
+        for (int i = 0; i < rucksacks.size(); i++) {
+            if (i % 3 == 0) {
+                temp = rucksacks.subList(i, i + 3);
+                groupedRucksacks.add(new ArrayList<>(temp));
+            }
+        }
+        return groupedRucksacks;
+    }
+
+    public static List<String> findBadgeType(List<List<Rucksack>> groupedRucksacks) {
         return Collections.emptyList();
     }
 }

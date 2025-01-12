@@ -71,7 +71,29 @@ public class Day03 {
         return groupedRucksacks;
     }
 
-    public static List<String> findBadgeType(List<List<Rucksack>> groupedRucksacks) {
-        return Collections.emptyList();
+    public static List<String[]> mergeCompartments(List<List<Rucksack>> groupedRucksacks){
+        List<String []> mergedBags = new ArrayList<>();
+
+        for(List<Rucksack> group: groupedRucksacks){
+            String [] bagGroups = new String [3];
+            for (int i = 0; i < bagGroups.length; i++) {
+                bagGroups[i] = group.get(i).firstCompartment + group.get(i).secondCompartment;
+            }
+            mergedBags.add(bagGroups);
+        }
+
+       return mergedBags;
+    }
+
+    public static List<Character> findBadgeType(List<List<Rucksack>> groupedRucksacks) {
+        List<Character> badges = new ArrayList<>();
+        List<String[]> mergedBags = mergeCompartments(groupedRucksacks);
+
+        for(String[] group: mergedBags){
+            Set <Character> thing = getStringIntersection(getStringIntersection(group[0],group[1]).toString(),group[2]);
+            String things = thing.toString();
+            badges.add(things.charAt(1));
+        }
+        return badges;
     }
 }

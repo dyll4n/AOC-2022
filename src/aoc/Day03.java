@@ -2,6 +2,7 @@ package aoc;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Day03 {
@@ -72,28 +73,19 @@ public class Day03 {
     }
 
     public static List<String[]> mergeCompartments(List<List<Rucksack>> groupedRucksacks){
-        List<String []> mergedBags = new ArrayList<>();
-
-        for(List<Rucksack> group: groupedRucksacks){
-            String [] bagGroups = new String [3];
-            for (int i = 0; i < bagGroups.length; i++) {
-                bagGroups[i] = group.get(i).firstCompartment + group.get(i).secondCompartment;
-            }
-            mergedBags.add(bagGroups);
-        }
-
-       return mergedBags;
+        return groupedRucksacks.stream().map(group -> IntStream.range(0, 3).mapToObj(i -> group.get(i).firstCompartment + group.get(i).secondCompartment).toArray(String[]::new)).collect(Collectors.toList());
     }
 
     public static List<Character> findBadgeType(List<List<Rucksack>> groupedRucksacks) {
-        List<Character> badges = new ArrayList<>();
         List<String[]> mergedBags = mergeCompartments(groupedRucksacks);
+        return mergedBags.stream().map(group -> getStringIntersection(getStringIntersection(group[0], group[1]).toString(), group[2])).map(Object::toString).map(things -> things.charAt(1)).collect(Collectors.toList());
+    }
 
-        for(String[] group: mergedBags){
-            Set <Character> thing = getStringIntersection(getStringIntersection(group[0],group[1]).toString(),group[2]);
-            String things = thing.toString();
-            badges.add(things.charAt(1));
+    public static int findBadgeTotal(List<Character> badges){
+        int value = 0;
+        for(int i = 0; i < badges.size(); i++){
+            value += priorityFor(badges.get(i));
         }
-        return badges;
+        return value;
     }
 }

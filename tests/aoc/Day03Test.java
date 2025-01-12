@@ -97,4 +97,10 @@ public class Day03Test {
 
         Assertions.assertIterableEquals(expected, badges);
     }
+
+    @Test
+    public void canFindBadgePriorityTotal() throws IOException {
+        String input = Files.readString(Path.of("inputs/day03.txt"));
+        Assertions.assertEquals(2738, Day03.findBadgeTotal(Day03.findBadgeType(Day03.getGroupedRucksacks(input))));
+    }
 }

@@ -82,10 +82,6 @@ public class Day03 {
     }
 
     public static int findBadgeTotal(List<Character> badges){
-        int value = 0;
-        for(int i = 0; i < badges.size(); i++){
-            value += priorityFor(badges.get(i));
-        }
-        return value;
+        return badges.stream().mapToInt(Day03::priorityFor).sum();
     }
 }

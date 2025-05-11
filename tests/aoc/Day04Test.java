@@ -58,10 +58,17 @@ public class Day04Test {
 
     }
 
+    //Renamed test to accurately describe what's being evaluated. Avoids confusion with below test.
     @Test
-    public void getOverlappingAssignmentCount() throws IOException {
+    public void getRangeContainmentCount() throws IOException {
         String input = Files.readString(Path.of("inputs/day04.txt"));
-        Assertions.assertEquals(305,Day04.getQuantityOverlappingPairs(input));
+        Assertions.assertEquals(305,Day04.getQuantityRangeContainment(input));
+    }
+
+    @Test
+    public void getOverlappingPairsCount() throws IOException {
+        String input = Files.readString(Path.of("inputs/day04.txt"));
+        Assertions.assertEquals(811,Day04.getOverlappingPairCount(input));
     }
 
 }

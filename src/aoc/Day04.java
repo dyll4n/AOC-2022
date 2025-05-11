@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 
 public class Day04 {
 
+
     public record AssignedPair(String first, String second) { }
 
     // Could use int lists to make it easier but wanted to explore how int arrays could be used.
@@ -57,7 +58,8 @@ public class Day04 {
         return assignedSections;
     }
 
-    public static int getQuantityOverlappingPairs(String input) {
+    //Renamed function to avoid confusion with function below.
+    public static int getQuantityRangeContainment(String input) {
         int count = 0;
         List<AssignedSection> assignedSections = getAssignedSections(input);
         for (AssignedSection pair: assignedSections){
@@ -67,6 +69,23 @@ public class Day04 {
                     secondSectionConverted.containsAll(firstSectionConverted))count++;
         }
 
+        return count;
+    }
+
+    public static int getOverlappingPairCount(String input) {
+        int count = 0;
+        List<AssignedSection> assignedSections = getAssignedSections(input);
+        for (AssignedSection pair: assignedSections){
+            outerloop:
+            for(int i = 0; i < pair.firstSection.length; i++){
+                for (int j = 0; j < pair.secondSection.length; j++) {
+                    if(pair.firstSection[i] == pair.secondSection[j]){
+                        count++;
+                        break outerloop;
+                    }
+                }
+            }
+        }
         return count;
     }
 

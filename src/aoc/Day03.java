@@ -7,9 +7,6 @@ import java.util.stream.Stream;
 
 public class Day03 {
 
-
-
-
     public record Rucksack(String firstCompartment, String secondCompartment) { }
 
     public static List<Rucksack> getRucksacks(String input) {

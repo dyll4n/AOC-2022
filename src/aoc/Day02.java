@@ -6,8 +6,6 @@ import java.util.stream.Collectors;
 
 public class Day02 {
 
-
-
     public enum Outcome {
         WIN, LOSE, DRAW;
 

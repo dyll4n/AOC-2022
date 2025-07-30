@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 
 public class Day04 {
 
-
     public record AssignedPair(String first, String second) { }
 
     // Could use int lists to make it easier but wanted to explore how int arrays could be used.

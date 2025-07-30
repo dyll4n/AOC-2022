@@ -43,7 +43,7 @@ public class Day05 {
     }
 
 
-    public static List<Deque> updateStacks(String sampleInput) {
+    public static List<Deque> updateStacks(String sampleInput, int mode) {
         StackComponents components = getSplitInputs(sampleInput);
         List<Deque> stacks = generateStacks(sampleInput);
         String [] instructions = components.instructions().split("(\\n|\\r\\n)");
@@ -53,19 +53,32 @@ public class Day05 {
             int movingQuantity = Integer.parseInt(instruction[1]);
             int startingStack = (Integer.parseInt(instruction[3]))- 1;
             int finishingStack = (Integer.parseInt(instruction[5])) -1;
+            List<String> elementOrders = new ArrayList<>();
 
             for(int j = movingQuantity; j > 0; j--){
                 String value = stacks.get(startingStack).pop().toString();
-                stacks.get(finishingStack).addFirst(value);
+
+                if (mode == 0){
+                    stacks.get(finishingStack).addFirst(value);
+                } else {
+                    elementOrders.add(value);
+                }
+            }
+            if(!elementOrders.isEmpty()){
+                for (int k = elementOrders.size() - 1; k >= 0; k--) {
+                    String value = elementOrders.remove(k);
+                    stacks.get(finishingStack).addFirst(value);
+
+                }
             }
         }
 
         return stacks;
     }
 
-    public static String getTopElements(String sampleInput) {
+    public static String getTopElements(String sampleInput, int mode) {
         String topElements = "";
-        List<Deque> stacks = updateStacks(sampleInput);
+        List<Deque> stacks = updateStacks(sampleInput, mode);
         for (Deque stack : stacks){
             topElements += stack.getFirst();
         }

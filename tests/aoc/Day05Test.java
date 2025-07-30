@@ -84,7 +84,7 @@ public class Day05Test {
         expected.get(2).addFirst("Z");
 
 
-        List<Deque> actual = Day05.updateStacks(sampleInput);
+        List<Deque> actual = Day05.updateStacks(sampleInput,0);
         Assertions.assertIterableEquals(actual,expected);
 
     }
@@ -92,7 +92,7 @@ public class Day05Test {
     @Test
     public void canGetTopElements(){
         String expected = "CMZ";
-        String actual = Day05.getTopElements(sampleInput);
+        String actual = Day05.getTopElements(sampleInput,0);
 
         Assertions.assertEquals(actual,expected);
     }
@@ -101,7 +101,25 @@ public class Day05Test {
     public void getTopElementsofPuzzle() throws IOException {
         String actualInput = Files.readString(Path.of("inputs/day05.txt"));
         String expected = "VGBBJCRMN";
-        String actual = Day05.getTopElements(actualInput);
+        String actual = Day05.getTopElements(actualInput, 0);
+
+        Assertions.assertEquals(actual,expected);
+    }
+
+    @Test
+    public void getTopElementsFromSampleUpdated() throws IOException {
+        String expected = "MCD";
+        String actual = Day05.getTopElements(sampleInput , 1);
+
+        Assertions.assertEquals(actual,expected);
+    }
+
+
+    @Test
+    public void getTopElementsofPuzzleUpdated() throws IOException {
+        String actualInput = Files.readString(Path.of("inputs/day05.txt"));
+        String expected = "LBBVJBRMH";
+        String actual = Day05.getTopElements(actualInput , 1);
 
         Assertions.assertEquals(actual,expected);
     }

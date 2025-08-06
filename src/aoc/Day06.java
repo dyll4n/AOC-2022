@@ -2,10 +2,15 @@ package aoc;
 
 public class Day06 {
 
-    public static int getStarterPacketMarker(String sampleInput){
+    public static int getStarterPacketMarker(String sampleInput, int mode){
 
-        for (int i = 0; i < sampleInput.length() - 3; i++) {
-            String packet = sampleInput.substring(i,i+4);
+        int packetSize;
+
+        if (mode == 1) packetSize = 4;
+        else packetSize = 14;
+
+        for (int i = 0; i < sampleInput.length() - (packetSize-1); i++) {
+            String packet = sampleInput.substring(i,i+ packetSize);
             boolean duplicate = false;
 
             for (int j = 0; j < packet.length(); j++){
@@ -18,7 +23,7 @@ public class Day06 {
             }
 
             if(!duplicate){
-                return i + 4;
+                return i + packetSize;
             }
 
         }

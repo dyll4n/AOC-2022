@@ -49,7 +49,7 @@ public class Day06Test {
     @Test
     public void getStarterPacketMarkerFromInputPartTwo() throws IOException {
         String actualInput = Files.readString(Path.of("inputs/day06.txt"));
-        int expected = 1702;
+        int expected = 3559;
         Assertions.assertEquals(expected,Day06.getStarterPacketMarker(actualInput,2));
 
     }

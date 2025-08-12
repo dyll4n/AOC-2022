@@ -1,14 +1,12 @@
 package aoc;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Day07 {
 
     public static class Node {
 
         private Node parent;
-        private boolean isDirectory;
         private String name;
         private int size;
         private List <Node> files;
@@ -21,16 +19,13 @@ public class Day07 {
 
             if(name.contains("/")){
                 this.name = "/";
-                isDirectory = true;
                 size = 0;
 
             } else if(name.startsWith("dir ")){
                 this.name = name.split(" ")[1];
-                isDirectory = true;
                 size = 0;
 
             } else {
-                isDirectory = false;
                 this.name = name.split(" ")[1];
                 this.size = Integer.parseInt(name.split(" ")[0]);
             }
@@ -127,13 +122,12 @@ public class Day07 {
         return root;
     }
 
-    public static int getTotalSize(String sampleInput) {
-        return getSum(populateDirectory(sampleInput));
+    public static int getTotalSize(String input) {
+        return getSum(populateDirectory(input));
     }
 
     public static int getSum (Node root){
         int total = 0;
-
         int fileSize = root.getTotalFileSize();
 
         if(fileSize < 100000){
@@ -147,5 +141,42 @@ public class Day07 {
         }
 
         return total;
+    }
+
+    public static int getDirectoryDeletionCandidate(String input){
+
+        Node root = populateDirectory(input);
+        int totalFileSpace = 70000000;
+        int requiredSpace = 30000000;
+        int candidate = 0;
+        List<Integer> directorySizes = new ArrayList<>();
+
+        directorySizes  = getSumOfDirectories(root, directorySizes);
+        Collections.sort(directorySizes);
+        int usedSpace = root.getTotalFileSize();;
+        int currentFree = totalFileSpace - usedSpace;
+
+        for(Integer size : directorySizes){
+            if(currentFree + size >= requiredSpace){
+                candidate = size;
+                break;
+            }
+        }
+
+        return candidate;
+    }
+
+    public static List<Integer> getSumOfDirectories(Node root, List<Integer> directorySizes){
+        int fileSize = root.getTotalFileSize();
+        directorySizes.add(fileSize);
+
+        if(!root.directories.isEmpty()){
+            for(Node directory: root.directories){
+                getSumOfDirectories(directory,directorySizes);
+            }
+
+        }
+
+        return directorySizes;
     }
 }

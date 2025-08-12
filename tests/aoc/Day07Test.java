@@ -35,8 +35,6 @@ public class Day07Test {
             7214296 k
             """;
 
-
-
     @Test
     public void canGetTotalSize(){
         Assertions.assertEquals(95437, Day07.getTotalSize(sampleInput));
@@ -48,8 +46,14 @@ public class Day07Test {
         Assertions.assertEquals(1449447, Day07.getTotalSize(actualInput));
     }
 
+    @Test
+    public void canGetSmallestDirSizeToDelete(){
+        Assertions.assertEquals(24933642, Day07.getDirectoryDeletionCandidate(sampleInput));
+    }
 
-
-
-    
+    @Test
+    public void canGetSmallestDirSizeToDeletePartTwo() throws IOException {
+        String actualInput = Files.readString(Path.of("inputs/day07.txt"));
+        Assertions.assertEquals(8679207, Day07.getDirectoryDeletionCandidate(actualInput));
+    }
 }

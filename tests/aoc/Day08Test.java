@@ -70,4 +70,30 @@ public class Day08Test {
         String actualInput = Files.readString(Path.of("inputs/day08.txt"));
         assertEquals(1789, Day08.calculateTotalTreeVisibility(actualInput));
     }
+
+    @Test
+    public void canCalculateTreeDistanceVisibility(){
+        Day08.TreeRange<Point, int[]> expectedOne = new Day08.TreeRange<>(new Point(1,2) , new int[]{1,2,1,2});
+        Day08.TreeRange<Point, int[]> expectedTwo = new Day08.TreeRange<>(new Point(3,2) , new int[]{2,1,2,2});
+        ArrayList<Day08.TreeRange<Point, int[]>> actual = Day08.calculateTreeRanges(sampleInput);
+
+        assertEquals(expectedOne.key(), actual.get(1).key());
+        assertArrayEquals(expectedOne.ranges(), actual.get(1).ranges());
+
+        assertEquals(expectedTwo.key(), actual.get(7).key());
+        assertArrayEquals(expectedTwo.ranges(), actual.get(7).ranges());
+    }
+
+    @Test
+    public void canCalculateHighestScenicScore(){
+        int expected = 8;
+        int actual = Day08.highestScenicScore(sampleInput);
+        assertEquals(expected,actual);
+    }
+
+    @Test
+    public void canCalculateHighestScenicScorePartTwo() throws IOException {
+        String actualInput = Files.readString(Path.of("inputs/day08.txt"));
+        assertEquals(314820, Day08.highestScenicScore(actualInput));
+    }
 }
